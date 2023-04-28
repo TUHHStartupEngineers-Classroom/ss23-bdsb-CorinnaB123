@@ -111,7 +111,7 @@ sales_by_state_year_tbl
 ```
 
 
-```{r plot, fig.width=11, fig.height=7}
+```{r plot_1, fig.width=11, fig.height=7}
  # Visualize the data
           sales_by_state_year_tbl %>%
   
