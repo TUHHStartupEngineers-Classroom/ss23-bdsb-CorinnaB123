@@ -1,8 +1,142 @@
 ---
 title: "Data Visualization"
-author: "Joschka Schwarz"
+author: "Corinna Boenke"
 ---
+# Challenge 4
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+##Load librarys
+```{r}
+library(conflicted)
+library(tidyverse)
+library(future)
+library(vroom)
+library(data.table)
+library(furrr)
+library(tictoc)
+library(readxl)
+library(readr)
+library(ggplot2)
+library("ggthemes")
+library(dplyr)
+library(lubridate)
+library(plotly)
+library(maps)
+conflicts_prefer(dplyr::filter)
+conflicts_prefer(lubridate::month)
+```
+
+## Get Data
+```{r}
+covid_data_tbl <- read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+
+
+cummulative_covid_data_tbl <- covid_data_tbl %>%
+  mutate(month_name = lubridate::month(date, label = TRUE, abbr = FALSE)) %>%
+  mutate(year = lubridate::year(date)) %>%
+  select(year, month_name, total_cases, location) %>%
+  filter(year %in% c("2022")) %>%
+  filter(location == 'Germany' | 
+           location == 'United Kingdom' | 
+           location == 'Spain' | 
+           location == 'France' | 
+           location == 'United States') %>%
+  group_by(location, month_name) %>%
+  summarize(all_cases = sum(total_cases)) %>%
+  mutate(cummulative_cases = cumsum(all_cases)) %>%
+  ungroup() %>%
+  rename(Countries = location)
+
+cummulative_covid_data_tbl
+```
+## Plot data
+```{r plot, fig.width=10, fig.height=7}
+cummulative_covid_data <- as.data.frame(cummulative_covid_data_tbl)                
+cummulative_covid_data
+
+  # Setup canvas
+  ggplot(cummulative_covid_data, aes(month_name, cummulative_cases)) +
+  
+  # Geometries
+  geom_line(aes(x     = month_name,
+                y     = cummulative_cases,
+                group = Countries,
+                color = Countries
+  ))+
+  
+  # Formatting  
+  scale_y_continuous(labels = scales::unit_format(scale = 1e-6,
+                                                  accuracy = 0.1,
+                                                  prefix = "",
+                                                  suffix = "M")) +
+  labs(
+    title = paste("COVID-19 confirmed cases worldwide"),
+    subtitle = paste("As of 19/04/2022"),
+    x = "Year 2022",
+    y = "Cummulative Cases"
+  ) +
+  
+  geom_smooth() +
+  theme_fivethirtyeight() +
+  
+  theme_minimal() +
+  
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face="bold"),
+    plot.caption = element_text(face = "bold.italic")
+  )
+```
+
+
+# Challenge 5
+
+## Plot data
+```{r plot_2, fig.width=10, fig.height=7}
+mortality_rate_tbl <- covid_data_tbl %>%
+  select(location, total_deaths, population) %>%
+  group_by(location, population) %>%
+  summarize(all_deaths = sum(total_deaths)) %>%
+  ungroup() %>%
+  mutate(mortality_rate = all_deaths/population) %>%
+  mutate(across(location, str_replace_all, "_", " ")) %>%
+  
+  #Hint
+  mutate(location = case_when(
+
+    location == "United Kingdom" ~ "UK",
+    location == "United States" ~ "USA",
+    location == "Democratic Republic of Congo" ~ "Democratic Republic of the Congo",
+    TRUE ~ location
+
+  )) %>%
+  #distinct()
+    
+  filter(!is.na(mortality_rate)) %>%
+  rename(country = location) %>%
+  select(country, mortality_rate)
+
+#World Map
+world <- map_data("world")
+mortality_rate_tbl %>%
+  ggplot() +
+  geom_map(map = world,
+           aes(map_id = country, fill = mortality_rate)) +
+  expand_limits(x=world$long, y=world$lat) +
+  labs(
+    title = paste("Confirmed COVID-19 deaths relative to the size of the population"),
+    subtitle = paste("Around 6.2 Million confirmed COVID-19 deaths worldwide"),
+    fill = "Mortality Rate",
+    x = "",
+    y = "",
+    caption = "Date: 04/16/2021"
+  ) +
+  scale_fill_gradient(low='#FF0000',high='#800000', 
+                      name='Mortality Rate') +
+  theme(legend.position = "right",
+        axis.text=element_blank(), 
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.background = element_blank())
+
+
+```
