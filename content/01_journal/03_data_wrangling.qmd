@@ -246,26 +246,26 @@ result_3_2 <- readRDS("result_3_2.rds")
 print(result_3_2)
 
 ```
-## Question 1
+### Question 1
 ```{r}
 #Question 1:
 #List the 10 US companies with the most assigned/granted patents
 result_1
 
 ```
-## Question 2
+### Question 2
 ```{r}
 #Question 2:
 #List the top 10 companies with the most new granted patents for August 2014.
 result_2
 ```
-## Question 3
+### Question 3
 ```{r}
 #Question 3:
 #What is the most innovative tech sector? For the top 10 companies (worldwide) with the most patents
 result_3_1
 ```
-## Question 3 Part 2
+### Question 3 Part 2
 ```{r}
 #Top 5 USPTO tech main classes
 result_3_2

@@ -129,7 +129,7 @@ for(i in seq_along(bike_family_tbl$url)){
 ```{r}
 print(rose_bike_data_tbl, n=20)
 glimpse(rose_bike_data_tbl)
-
+rose_bike_data_tbl
 
 
 ```     
