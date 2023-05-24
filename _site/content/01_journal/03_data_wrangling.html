@@ -449,25 +449,138 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="results" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="results"><span class="header-section-number">1.4</span> Results</h2>
-<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-2_4fc1c526928e6d4b83eee5db9678511f">
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-2_dea51458026d9235c0bd9032a785cdc3">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#Question 1:</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">#List the 10 US companies with the most assigned/granted patents</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>result_1<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_1.rds"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="fu">print</span>(result_1)</span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#Question 2:</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#List the top 10 companies with the most new granted patents for August 2014.</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>result_2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_2.rds"</span>)</span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="fu">print</span>(result_2)</span>
-<span id="cb13-10"><a href="#cb13-10"></a></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#Question 3:</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#What is the most innovative tech sector? For the top 10 companies (worldwide) with the most patents</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a>result_3_1 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_3_1.rds"</span>)</span>
-<span id="cb13-14"><a href="#cb13-14"></a><span class="fu">print</span>(result_3_1)</span>
-<span id="cb13-15"><a href="#cb13-15"></a></span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#Top 5 USPTO tech main classes</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>result_3_2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_3_2.rds"</span>)</span>
-<span id="cb13-18"><a href="#cb13-18"></a><span class="fu">print</span>(result_3_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="fu">print</span>(result_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                                    organization COUNT
+#&gt;  1: International Business Machines Corporation  7547
+#&gt;  2:               Samsung Electronics Co., Ltd.  5835
+#&gt;  3:                      Canon Kabushiki Kaisha  4099
+#&gt;  4:                       Microsoft Corporation  3165
+#&gt;  5:                                 Google Inc.  2668
+#&gt;  6:                    Kabushiki Kaisha Toshiba  2656
+#&gt;  7:                       QUALCOMM Incorporated  2597
+#&gt;  8:                         LG Electronics Inc.  2459
+#&gt;  9:                       Panasonic Corporation  2218
+#&gt; 10:                                  Apple Inc.  2201</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#Question 2:</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#List the top 10 companies with the most new granted patents for August 2014.</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>result_2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_2.rds"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">print</span>(result_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                                    organization COUNT
+#&gt;  1: International Business Machines Corporation  2649
+#&gt;  2:               Samsung Electronics Co., Ltd.  1866
+#&gt;  3:                      Canon Kabushiki Kaisha  1332
+#&gt;  4:                            Sony Corporation  1103
+#&gt;  5:                       Microsoft Corporation   935
+#&gt;  6:                    Kabushiki Kaisha Toshiba   931
+#&gt;  7:                       QUALCOMM Incorporated   917
+#&gt;  8:                                 Google Inc.   894
+#&gt;  9:                         LG Electronics Inc.   772
+#&gt; 10:                                  Apple Inc.   665</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">#Question 3:</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co">#What is the most innovative tech sector? For the top 10 companies (worldwide) with the most patents</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>result_3_1 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_3_1.rds"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">print</span>(result_3_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                                    organization type COUNT
+#&gt;  1: International Business Machines Corporation    2  5923
+#&gt;  2:               Samsung Electronics Co., Ltd.    3  4269
+#&gt;  3:                      Canon Kabushiki Kaisha    3  3265
+#&gt;  4:                            Sony Corporation    3  2618
+#&gt;  5:                       Microsoft Corporation    2  2234
+#&gt;  6:                    Kabushiki Kaisha Toshiba    3  2156
+#&gt;  7:                       QUALCOMM Incorporated    2  2082
+#&gt;  8:                                 Google Inc.    2  1923
+#&gt;  9:                         LG Electronics Inc.    3  1767
+#&gt; 10:                       Panasonic Corporation    3  1735</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>result_3_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["organization"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"2","3":"5923"},{"1":"Samsung Electronics Co., Ltd.","2":"3","3":"4269"},{"1":"Canon Kabushiki Kaisha","2":"3","3":"3265"},{"1":"Sony Corporation","2":"3","3":"2618"},{"1":"Microsoft Corporation","2":"2","3":"2234"},{"1":"Kabushiki Kaisha Toshiba","2":"3","3":"2156"},{"1":"QUALCOMM Incorporated","2":"2","3":"2082"},{"1":"Google Inc.","2":"2","3":"1923"},{"1":"LG Electronics Inc.","2":"3","3":"1767"},{"1":"Panasonic Corporation","2":"3","3":"1735"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#Top 5 USPTO tech main classes</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>result_3_2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result_3_2.rds"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">print</span>(result_3_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    type  COUNT                    patent_type
+#&gt; 1:    3 411349      US Company or Corporation
+#&gt; 2:    2 381134 Foreign Company or Corporation
+#&gt; 3:    6   2913         US  Federal Government
+#&gt; 4:    4   2864                  US Individual
+#&gt; 5:    5   2441             Foreign Individual</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>result_3_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[2],"type":["int"],"align":["right"]},{"label":["patent_type"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"3","2":"411349","3":"US Company or Corporation"},{"1":"2","2":"381134","3":"Foreign Company or Corporation"},{"1":"6","2":"2913","3":"US  Federal Government"},{"1":"4","2":"2864","3":"US Individual"},{"1":"5","2":"2441","3":"Foreign Individual"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-3_ab87bc9411df0d3e1ba0c2389c8a550c">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">#Question 1:</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co">#List the 10 US companies with the most assigned/granted patents</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>result_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["organization"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"7547"},{"1":"Samsung Electronics Co., Ltd.","2":"5835"},{"1":"Canon Kabushiki Kaisha","2":"4099"},{"1":"Microsoft Corporation","2":"3165"},{"1":"Google Inc.","2":"2668"},{"1":"Kabushiki Kaisha Toshiba","2":"2656"},{"1":"QUALCOMM Incorporated","2":"2597"},{"1":"LG Electronics Inc.","2":"2459"},{"1":"Panasonic Corporation","2":"2218"},{"1":"Apple Inc.","2":"2201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-4_da62067b0de5e1d781614fcd40129541">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#Question 2:</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co">#List the top 10 companies with the most new granted patents for August 2014.</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>result_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["organization"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"2649"},{"1":"Samsung Electronics Co., Ltd.","2":"1866"},{"1":"Canon Kabushiki Kaisha","2":"1332"},{"1":"Sony Corporation","2":"1103"},{"1":"Microsoft Corporation","2":"935"},{"1":"Kabushiki Kaisha Toshiba","2":"931"},{"1":"QUALCOMM Incorporated","2":"917"},{"1":"Google Inc.","2":"894"},{"1":"LG Electronics Inc.","2":"772"},{"1":"Apple Inc.","2":"665"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-5_8a2c7003d3d7c88300834374d93f1094">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">#Question 3:</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co">#What is the most innovative tech sector? For the top 10 companies (worldwide) with the most patents</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>result_3_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["organization"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"2","3":"5923"},{"1":"Samsung Electronics Co., Ltd.","2":"3","3":"4269"},{"1":"Canon Kabushiki Kaisha","2":"3","3":"3265"},{"1":"Sony Corporation","2":"3","3":"2618"},{"1":"Microsoft Corporation","2":"2","3":"2234"},{"1":"Kabushiki Kaisha Toshiba","2":"3","3":"2156"},{"1":"QUALCOMM Incorporated","2":"2","3":"2082"},{"1":"Google Inc.","2":"2","3":"1923"},{"1":"LG Electronics Inc.","2":"3","3":"1767"},{"1":"Panasonic Corporation","2":"3","3":"1735"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-6_512b5b3c0d73ec4772dddeebb2e07e8e">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">#Top 5 USPTO tech main classes</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>result_3_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COUNT"],"name":[2],"type":["int"],"align":["right"]},{"label":["patent_type"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"3","2":"411349","3":"US Company or Corporation"},{"1":"2","2":"381134","3":"Foreign Company or Corporation"},{"1":"6","2":"2913","3":"US  Federal Government"},{"1":"4","2":"2864","3":"US Individual"},{"1":"5","2":"2441","3":"Foreign Individual"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
 </div>
 
 
