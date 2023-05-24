@@ -8,6 +8,7 @@ author: "Corinna Boenke"
 ```{r}
 library(conflicted)
 library(tidyverse)
+library(future)
 library(vroom)
 library(data.table)
 library(furrr)
